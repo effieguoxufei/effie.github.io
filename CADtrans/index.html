@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="CADTrans: A Code Tree-Guided CAD Generative Transformer Model with Regularized Discrete Codebooks">
+    <meta name="author" content="Xufei Guo,
+                                Xiao Dong,
+                                Juan Cao,
+                                Zhonggui Chen">
+
+    <title>CADTrans: A Code Tree-Guided CAD Generative Transformer Model with Regularized Discrete Codebooks</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="offcanvas.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container"></div>
+    <h2>CADTrans: A Code Tree-Guided CAD Generative <br> Transformer Model with Regularized Discrete Codebooks </h2>
+    <hr>
+    <p class="authors">
+        <a href="feixuguo@126.com"> Xufei Guo</a>,
+        <a href="xiaodong@uic.edu.cn"> Xiao Dong</a>,
+        <a href="juancao@xmu.edu.cn"> Juan Cao</a>, 
+        <a href="chenzhonggui@xmu.edu.cn"> Zhonggui Chen</a>, <br>
+        CVM 2025
+    </p>
+    <div class="btn-group" role="group" aria-label="Top menu">
+        <a class="btn btn-primary" href="https://github.com/effieguoxufei/CADTrans">Code</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="section">
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+					<img src="img/figure0.png" style="width:100%; margin-right:-20px; margin-top:-10px;">
+            </div>
+        </div>
+        <br>
+        <h2>Abstract</h2>
+        <hr>
+        <p> We propose a novel CAD model generation network called CADTrans which is based on a code tree-guided transformer framework to autoregressively generate CAD construction sequences. 
+            Firstly, three regularized discrete codebooks are extracted through vector quantized adversarial learning, with each codebook respectively representing  the features of Loop, Profile, and Solid. Secondly, these codebooks  are used to normalize a CAD construction sequence into a structured code tree representation  which is then used to  train a standard transformer network to reconstruct the code tree. Finally, the code tree is used as global information to guide the sketch-and-extrude method to recover the corresponding geometric information, thereby reconstructing the complete CAD model.
+            Extensive experiments demonstrate that CADTrans achieves state-of-the-art performance, generating higher-quality, more varied, and complex models. Meanwhile, it provides more possibilities for CAD applications through its flexible control method, which improves design efficiency and promotes creativity.
+        </p>
+    </div>
+
+    <div class="section">
+	    <h2>CAD Construction Sequence Representation</h2>
+        <hr>
+        
+        <p>
+        The reconstructed sequence of the model is decomposed into three different primitives: entities (S), contours (P), and loops (L), and then the network is trained to extract three codebooks (right). Each codebook training network contains an encoder (E), a decoder (G), a discriminator (D), and a codebook (C). The reconstructed sequence model is represented as a tree structure where each node is encoded with a specific code in the codebook. The code tree is constructed in a top-down manner S-P-L (left).
+        </p>
+        <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+					<img src="img/figure1.png" style="width:100%; margin-right:-20px; margin-top:-10px;">
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Random Generation Result</h2>
+        <hr>
+    
+        <!-- 3D模型部分 -->
+        <div style="text-align: center;">
+            <img src="img/figure2.png" alt="Randomly generated 3D model" style="max-width: 100%; height: auto;">
+            <p style="margin-top: 5px;">Randomly generated 3D model.</p>
+        </div>
+    
+        <!-- 2D草图部分 -->
+        <div style="text-align: center; margin-top: 20px;">
+            <img src="img/figure3.png" alt="Randomly generated 2D sketch" style="max-width: 100%; height: auto;">
+            <p style="margin-top: 5px;">Randomly generated 2D sketch.</p>
+        </div>
+    </div>
+
+
+
+    <div class="section">
+	    <h2>Autocompletion.</h2>
+        <hr>
+
+        <p>
+            The autocompletion function can further design and refine details based on the initial model of one or more parts input by the user, thereby generating a 3D model with more complex geometry and details. The code tree is supplemented according to the user's input and used as conditional information to input into our code tree-guided transformer network together with the existing CAD geometry sequence to generate a new CAD model.
+        </p>
+            <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+					<img src="img/figure4.png" style="width:100%; margin-right:-20px; margin-top:-10px;">
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+	    <h2>Mixed Code Tree Code Generation.</h2>
+        <hr>
+
+        <p>
+            Mixing codes from different code trees can generate entirely new 3D models. Locking down some of the code tree information helps to mimic a particular design style, thus generating similar design models and widening the design boundary.
+            Code generation results for fixed loop and profile codes (left), fixed solid codes (middle), and mixed code tree (right).
+        </p>
+            <div class="row align-items-center">
+            <div class="col justify-content-center text-center">
+					<img src="img/figure5.png" style="width:100%; margin-right:-20px; margin-top:-10px;">
+            </div>
+        </div>
+    </div>
+  
+    <div class="section">
+        <h2>Bibtex</h2>
+        <hr>
+        <div class="bibtexsection">
+			@inproceedings{guo2025cadtransn, 
+				title     = {CADTrans: A Code Tree-Guided CAD Generative Transformer Model with Regularized Discrete Codebooks},
+                author    = {Guo, Xufei and Dong, xiao and Cao, Juan and Chen, Zhonggui},
+				booktitle = {Graphical Models},
+                year={2025}
+			}
+        </div>
+    </div>
+
+    <div class="section">
+	    <h2>Acknowledgement</h2>
+        <hr>
+
+        <p>
+            This work was supported by the National Key R&D Program of China (No. 2022YFB3303400), National Natural Science Foundation of China (Nos. 62272402, 62372389), Natural Science Foundation of Fujian Province (Nos. 2024J01513243, 2022J01001), and Fundamental Research Funds for the Central Universities (No. 20720220037).
+        </p>
+    </div>
+
+    
+</div>
+
+
+
+
+</body>
+</html>
